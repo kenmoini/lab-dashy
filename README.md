@@ -11,7 +11,7 @@ Dashy allows setting up a dashboard with links to services and applications, and
 
 The Ansible Playbook will install all the latest versions of these packages on the target hosts.
 
-You'll also need the dependant Ansible Collections installed:
+You'll also need the dependant Ansible Collections installed if running locally via the CLI:
 
 ```bash=
 ansible-galaxy collection install -r ./collections/requirements.yml
