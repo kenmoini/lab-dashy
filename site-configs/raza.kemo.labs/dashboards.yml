@@ -175,3 +175,12 @@ dashy_services:
       - title: Artifactory
         icon: favicon
         url: https://artifactory.kemo.labs/
+
+    - name: Tools
+      items:
+      - title: HackMD
+        icon: favicon
+        url: https://hackmd.com/
+      - title: GitHub
+        icon: favicon
+        url: https://github.com/
