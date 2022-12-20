@@ -55,11 +55,11 @@ case $1 in
   ################################################################################# UPDATE SERVICE
   "update")
     echo "Checking for container updates..."
-
+{% raw %}
     # Get the current image SHA
     CURRENT_IMAGE_SHA=$(podman images --digests --format '{{.Digest}}' ${CONTAINER_SOURCE})
     LATEST_IMAGE_SHA=$(skopeo inspect docker://${CONTAINER_SOURCE} | jq -r '.Digest')
-
+{% endraw %}
     # Compare the two strings, making sure they're not empty and begin wiht 'sha256:'
     if [ ! -z "${LATEST_IMAGE_SHA}" ] && [ ! -z "${CURRENT_IMAGE_SHA}"  ] && [[ "${LATEST_IMAGE_SHA}" == sha256:* ]] && [[ "${CURRENT_IMAGE_SHA}" == sha256:* ]]; then
       echo "Current image SHA: ${CURRENT_IMAGE_SHA}"
