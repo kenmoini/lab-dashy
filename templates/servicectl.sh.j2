@@ -1,0 +1,84 @@
+#!/bin/bash
+
+set -x
+
+###################################################################################
+# VARIABLES
+###################################################################################
+
+CONTAINER_NAME="{{ service.name }}"
+CONTAINER_SOURCE="{{ container_image }}"
+
+## ENVIRONMENTAL VARIABLES
+ENV_VARS="-e TZ={{ service.timezone | default(timezone) }}"
+
+NETWORK="--network {{ service.network.name | default('host') }}"
+
+{% if service.network.ports | length > 0 %}
+CONTAINER_PORTS="-p {{ service.network.ports | join(' -p ') }}"
+NETWORK="${NETWORK} ${CONTAINER_PORTS}"
+{% endif %}
+
+{% if service.network.ip is defined %}
+IP_ADDRESS="{{ service.network.ip }}"
+NETWORK="${NETWORK} --ip ${IP_ADDRESS}"
+{% endif %}
+
+CONFIG_VOLUME_MOUNT="{{ service_containers_dir }}/${CONTAINER_NAME}/volumes/config/config.yml:/app/public/conf.yml:z"
+
+###################################################################################
+# EXECUTION PREFLIGHT
+###################################################################################
+
+## Ensure there is an action arguement
+if [ -z "$1" ]; then
+  echo "Need action arguement of 'start', 'restart', or 'stop'!"
+  echo "${0} start|stop|restart"
+  exit 1
+fi
+
+
+################################################################################### SERVICE ACTION SWITCH
+case $1 in
+
+  ################################################################################# RESTART/STOP SERVICE
+  "restart" | "stop" | "start")
+    echo "Stopping container services if running..."
+
+    echo "Stopping ${CONTAINER_NAME} container..."
+    /usr/bin/podman kill ${CONTAINER_NAME}
+
+    echo "Removing ${CONTAINER_NAME} container..."
+    /usr/bin/podman rm -f -i ${CONTAINER_NAME}
+    ;;
+
+esac
+
+case $1 in
+
+  ################################################################################# RESTART/START SERVICE
+  "restart" | "start")
+    sleep 3
+
+    echo "Starting container services..."
+
+    # Deploy ${CONTAINER_NAME} container
+    echo -e "Deploying ${CONTAINER_NAME}...\n"
+
+    /usr/bin/podman create \
+      --name "${CONTAINER_NAME}" \
+      --hostname "${CONTAINER_NAME}" \
+      ${ENV_VARS} \
+      ${NETWORK} \
+      -m {{ service.resources.limits.memory | default('1Gi') }} --cpus {{ service.resources.limits.cpu | default('0.500') }} \
+      -v ${CONFIG_VOLUME_MOUNT} \
+{% if configure_selinux %}
+      --security-opt label=type:${CONTAINER_NAME}.process \
+{% endif %}
+      ${CONTAINER_SOURCE}
+
+    /usr/bin/podman start ${CONTAINER_NAME}
+
+    ;;
+
+esac

@@ -1,0 +1,39 @@
+---
+
+- name: Create CaaS Directories
+  ansible.builtin.file:
+    path: "{{ dir_item }}"
+    state: directory
+    owner: root
+    group: root
+  loop:
+    - "{{ service_containers_dir }}/{{ service.name }}/"
+    - "{{ service_containers_dir }}/{{ service.name }}/scripts"
+    - "{{ service_containers_dir }}/{{ service.name }}/volumes"
+    - "{{ service_containers_dir }}/{{ service.name }}/volumes/config"
+  loop_control:
+    loop_var: dir_item
+
+- name: Template CaaS deployment files - servicectl.sh.j2
+  ansible.builtin.template:
+    src: servicectl.sh.j2
+    dest: "{{ service_containers_dir }}/{{ service.name }}/scripts/servicectl.sh"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Template CaaS deployment files - {{ service.name }}.service"
+  ansible.builtin.template:
+    src: service.j2
+    dest: "/etc/systemd/system/{{ service.name }}.service"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Template CaaS deployment files - Config"
+  ansible.builtin.copy:
+    content: "{{ service.dashy_config | to_nice_yaml }}"
+    dest: "{{ service_containers_dir }}/{{ service.name }}/volumes/config/config.yml"
+    owner: root
+    group: root
+    mode: 0755
