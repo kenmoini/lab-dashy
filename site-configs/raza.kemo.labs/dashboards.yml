@@ -15,6 +15,50 @@ dashy_services:
   dashy_config:
     pageInfo:
       title: Kemo Labs
+      description: ''
+      navLinks: []
+      footerText: ''
+    appConfig:
+      layout: horizontal
+      iconSize: medium
+      theme: basic
+      startingView: default
+      defaultOpeningMethod: newtab
+      statusCheck: true
+      statusCheckInterval: 30
+      language: en
+      faviconApi: local
+      routingMode: history
+      enableMultiTasking: false
+      widgetsAlwaysUseProxy: false
+      webSearch:
+        disableWebSearch: false
+        searchEngine: duckduckgo
+        openingMethod: newtab
+        searchBangs: {}
+      enableFontAwesome: true
+      enableMaterialDesignIcons: false
+      hideComponents:
+        hideHeading: false
+        hideNav: false
+        hideSearch: false
+        hideSettings: false
+        hideFooter: false
+      auth:
+        enableGuestAccess: false
+        users: []
+        enableKeycloak: false
+      showSplashScreen: false
+      preventWriteToDisk: false
+      preventLocalSave: false
+      disableConfiguration: false
+      disableConfigurationForNonAdmin: false
+      allowConfigEdit: true
+      enableServiceWorker: false
+      disableContextMenu: false
+      disableUpdateChecks: false
+      disableSmartSort: false
+      enableErrorReporting: false
     sections: # An array of sections
     - name: OOBM
       icon: far fa-rocket
@@ -94,15 +138,12 @@ dashy_services:
 
     - name: Identity Services
       items:
-      - title: Red Hat Identity Management
+      - title: FreeIPA
         icon: favicon
         url: https://idm.kemo.labs/
       - title: Keycloak SSO
         icon: favicon
         url: https://sso.kemo.labs/
-      - title: Step CA
-        icon: favicon
-        url: https://step-ca.kemo.labs/
 
     - name: Media Services
       items:
@@ -191,7 +232,7 @@ dashy_services:
       items:
       - title: HackMD
         icon: favicon
-        url: https://hackmd.com/
+        url: https://www.hackmd.com/
       - title: GitHub
         icon: favicon
-        url: https://github.com/
+        url: https://www.github.com/
