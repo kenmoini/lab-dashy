@@ -51,6 +51,34 @@ case $1 in
     echo "Removing ${CONTAINER_NAME} container..."
     /usr/bin/podman rm -f -i ${CONTAINER_NAME}
     ;;
+  
+  ################################################################################# UPDATE SERVICE
+  "update")
+    echo "Checking for container updates..."
+
+    # Get the current image SHA
+    CURRENT_IMAGE_SHA=$(podman images --digests --format '{{.Digest}}' ${CONTAINER_SOURCE})
+    LATEST_IMAGE_SHA=$(skopeo inspect docker://${CONTAINER_SOURCE} | jq -r '.Digest')
+
+    # Compare the two strings, making sure they're not empty and begin wiht 'sha256:'
+    if [ ! -z "${LATEST_IMAGE_SHA}" ] && [ ! -z "${CURRENT_IMAGE_SHA}"  ] && [[ "${LATEST_IMAGE_SHA}" == sha256:* ]] && [[ "${CURRENT_IMAGE_SHA}" == sha256:* ]]; then
+      echo "Current image SHA: ${CURRENT_IMAGE_SHA}"
+      echo "Latest image SHA: ${LATEST_IMAGE_SHA}"
+
+      # If the two strings are different then run the update scripts
+      if [ "${CURRENT_IMAGE_SHA}" != "${LATEST_IMAGE_SHA}" ]; then
+        echo "New image available, updating..."
+
+        # Run the update script
+        ${0} stop
+        /usr/bin/podman pull ${CONTAINER_SOURCE}
+        ${0} start
+      else
+        echo "No new image available, exiting..."
+      fi
+    fi
+
+    ;;
 
 esac
 
