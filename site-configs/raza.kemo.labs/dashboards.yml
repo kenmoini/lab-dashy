@@ -128,22 +128,33 @@ dashy_services:
       - title: Tautilli
         icon: favicon
         url: https://tautulli.kemo.labs/
+      - title: Jackett
+        icon: favicon
+        url: https://jackett.kemo.labs/
 
 
     - name: Lab Services
       items:
+      - title: Assisted Installer
+        icon: favicon
+        url: https://assisted-installer.kemo.labs/
+
       - title: Kemo Labs Primer
         icon: favicon
         url: https://kemo.labs/
+
       - title: Metrics Stack (Grafana)
         icon: favicon
         url: https://grafana.kemo.labs/
+
       - title: Ansible Tower
         icon: favicon
         url: https://tower.kemo.labs/
+
       - title: GitLab
         icon: favicon
         url: https://gitlab.kemo.labs/
+
       - title: Core OpenShift Cluster
         icon: favicon
         url: https://console-openshift-console.apps.core-ocp.d70.lab.kemo.network/
