@@ -183,3 +183,6 @@ dashy_services:
       - title: HackMD
         icon: favicon
         url: https://hackmd.com/
+      - title: GitHub
+        icon: favicon
+        url: https://github.com/
