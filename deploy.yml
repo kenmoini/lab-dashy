@@ -96,3 +96,14 @@
       loop_control:
         pause: 60
         loop_var: service
+
+    - name: Install Container Updater Crontab
+      ansible.builtin.cron:
+        name: "Update {{ service.name }} container"
+        minute: "20"
+        hour: "4"
+        job: "/opt/caas/{{ service.name }}/scripts/servicectl.sh update"
+        user: root
+      loop: "{{ dashy_services }}"
+      loop_control:
+        loop_var: service
