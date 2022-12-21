@@ -33,7 +33,7 @@
     - name: Download any additional trusted Root CA certs
       ansible.builtin.get_url:
         url: "{{ download_item }}"
-        dest: "{{ service_containers_dir }}/{{ service.name }}/certs/roots/{{ item | basename }}"
+        dest: "{{ service_containers_dir }}/{{ service.name }}/certs/roots/{{ download_item | basename }}"
         owner: root
         group: root
         mode: 0644
