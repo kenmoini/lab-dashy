@@ -205,6 +205,7 @@ dashy_services:
       - title: Unifi UI
         icon: favicon
         url: https://unifi.ui.com/
+        statusCheck: false
 
       - title: Pi-Hole 1
         icon: favicon
@@ -233,6 +234,8 @@ dashy_services:
       - title: HackMD
         icon: favicon
         url: https://www.hackmd.com/
+        statusCheck: false
       - title: GitHub
         icon: favicon
         url: https://www.github.com/
+        statusCheck: false
