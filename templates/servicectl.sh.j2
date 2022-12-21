@@ -26,6 +26,8 @@ NETWORK="${NETWORK} --ip ${IP_ADDRESS}"
 
 CONFIG_VOLUME_MOUNT="{{ service_containers_dir }}/${CONTAINER_NAME}/volumes/config/config.yml:/app/public/conf.yml:z"
 
+HOST_CA_TRUST_MOUNT="/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem:/etc/ssl/certs/ca-certificates.crt:ro"
+
 ###################################################################################
 # EXECUTION PREFLIGHT
 ###################################################################################
@@ -100,6 +102,7 @@ case $1 in
       ${NETWORK} \
       -m {{ service.resources.limits.memory | default('1Gi') }} --cpus {{ service.resources.limits.cpu | default('0.500') }} \
       -v ${CONFIG_VOLUME_MOUNT} \
+      -v ${HOST_CA_TRUST_MOUNT} \
 {% if configure_selinux %}
       --security-opt label=type:${CONTAINER_NAME}.process \
 {% endif %}
