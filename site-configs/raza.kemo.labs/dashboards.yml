@@ -26,6 +26,7 @@ dashy_services:
       defaultOpeningMethod: newtab
       statusCheck: true
       statusCheckInterval: 30
+      statusCheckAllowInsecure: true
       language: en
       faviconApi: local
       routingMode: history
@@ -219,6 +220,7 @@ dashy_services:
       - title: Nexus
         icon: favicon
         url: https://nexus.kemo.labs/
+        statusCheckAllowInsecure: true
       - title: Quay
         icon: favicon
         url: https://quay.kemo.labs/
