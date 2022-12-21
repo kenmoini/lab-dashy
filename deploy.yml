@@ -16,6 +16,11 @@
     # service defaults - can be overridden at the service, runtime, or site_config level
     timezone: America/New_York
 
+    additionalTrustedRootCerts:
+    - https://github.com/kenmoini/homelab/raw/main/serto-root-ca.pem
+    - https://github.com/kenmoini/homelab/raw/main/klstep-ca.pem
+    - https://github.com/kenmoini/homelab/raw/main/pgv-root-ca.pem
+
   tasks:
 
     - name: Read in the site config variables

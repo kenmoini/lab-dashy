@@ -14,6 +14,36 @@
   loop_control:
     loop_var: dir_item
 
+- name: Set up additional trusted root certificates for NodeJS
+  when: additionalTrustedRootCerts is defined
+  block:
+    - name: Create CaaS Directory for certs
+      ansible.builtin.file:
+        path: "{{ dir_item }}"
+        state: directory
+        owner: root
+        group: root
+      loop:
+        - "{{ service_containers_dir }}/{{ service.name }}/"
+        - "{{ service_containers_dir }}/{{ service.name }}/certs"
+        - "{{ service_containers_dir }}/{{ service.name }}/certs/roots"
+      loop_control:
+        loop_var: dir_item
+
+    - name: Download any additional trusted Root CA certs
+      ansible.builtin.get_url:
+        url: "{{ download_item }}"
+        dest: "{{ service_containers_dir }}/{{ service.name }}/certs/roots/{{ item | basename }}"
+        owner: root
+        group: root
+        mode: 0644
+      loop: "{{ additionalTrustedRootCerts }}"
+      loop_control:
+        loop_var: download_item
+
+    - name: Join all the certs into a single file
+      ansible.builtin.shell: "cat {{ service_containers_dir }}/{{ service.name }}/certs/roots/* > {{ service_containers_dir }}/{{ service.name }}/certs/ca-bundle.crt"
+
 - name: Template CaaS deployment files - servicectl.sh.j2
   ansible.builtin.template:
     src: servicectl.sh.j2
