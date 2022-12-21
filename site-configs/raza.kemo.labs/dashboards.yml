@@ -26,7 +26,6 @@ dashy_services:
       defaultOpeningMethod: newtab
       statusCheck: true
       statusCheckInterval: 30
-      statusCheckAllowInsecure: true
       language: en
       faviconApi: local
       routingMode: history
@@ -68,32 +67,26 @@ dashy_services:
         description: Core Lab Server
         icon: fab fa-github
         url: https://raza.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
       - title: foundation
         description: R730 running RHEL
         icon: fab fa-github
         url: https://foundation.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
       - title: suki
         description: EPYC Server in the living room
         icon: fab fa-github
         url: https://suki.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
       - title: endurance
         description: EPYC server with bulk compute resources
         icon: fab fa-github
         url: https://endurance.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
       - title: serenity
         description: R730 that may be borked
         icon: fab fa-github
         url: https://serenity.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
       - title: rocinante
         description: R720 that runs vSphere
         icon: fab fa-github
         url: https://rocinante.mgmt.kemo.labs
-        statusCheckAllowInsecure: true
 
     - name: Cockpit
       icon: far fa-rocket
@@ -102,104 +95,83 @@ dashy_services:
         description: Core Lab Server
         icon: fab fa-github
         url: https://raza.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: foundation
         description: R730 running RHEL
         icon: fab fa-github
         url: https://foundation.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: suki
         description: EPYC Server in the living room
         icon: fab fa-github
         url: https://suki.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: endurance
         description: EPYC server with bulk compute resources
         icon: fab fa-github
         url: https://endurance.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: serenity
         description: R730 that may be borked
         icon: fab fa-github
         url: https://serenity.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: IDM
         description: Red Hat Identity Management
         icon: fab fa-github
         url: https://idm.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: Tower
         description: Red Hat Ansible Tower
         icon: fab fa-github
         url: https://tower.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: StepCA
         description: StepCA server
         icon: fab fa-github
         url: https://step-ca.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: Plex
         description: Plex Media Server
         icon: fab fa-github
         url: https://plex.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: ZeroTier
         description: ZeroTier Network Controller
         icon: fab fa-github
         url: https://zerotier.kemo.labs:9090/
-        statusCheckAllowInsecure: true
       - title: GitLab
         description: GitLab Server
         icon: fab fa-github
         url: https://gitlab.kemo.labs:9090/
-        statusCheckAllowInsecure: true
 
     - name: Identity Services
       items:
       - title: FreeIPA
         icon: favicon
         url: https://idm.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Keycloak SSO
         icon: favicon
         url: https://sso.kemo.labs/
-        statusCheckAllowInsecure: true
 
     - name: Media Services
       items:
       - title: Sonarr TV
         icon: favicon
         url: https://sonarr.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Radarr Movies
         icon: favicon
         url: https://radarr.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Bazarr Subtitles
         icon: favicon
         url: https://bazarr.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Plex
         icon: favicon
         url: https://plex.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Deluge
         icon: favicon
         url: https://deluge-web.kemo.labs/
-        statusCheckAllowInsecure: true
 
       - title: Overseerr
         icon: favicon
         url: https://overseerr.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Tautilli
         icon: favicon
         url: https://tautulli.kemo.labs/
-        statusCheckAllowInsecure: true
       - title: Jackett
         icon: favicon
         url: https://jackett.kemo.labs/
-        statusCheckAllowInsecure: true
 
 
     - name: Lab Services
@@ -211,27 +183,22 @@ dashy_services:
       - title: Kemo Labs Primer
         icon: favicon
         url: https://kemo.labs/
-        statusCheckAllowInsecure: true
 
       - title: Metrics Stack (Grafana)
         icon: favicon
         url: https://grafana.kemo.labs/
-        statusCheckAllowInsecure: true
 
       - title: Ansible Tower
         icon: favicon
         url: https://tower.kemo.labs/
-        statusCheckAllowInsecure: true
 
       - title: GitLab
         icon: favicon
         url: https://gitlab.kemo.labs/
-        statusCheckAllowInsecure: true
 
       - title: Core OpenShift Cluster
         icon: favicon
         url: https://console-openshift-console.apps.core-ocp.d70.lab.kemo.network/
-        statusCheckAllowInsecure: true
 
     - name: Network Services
       items:
