@@ -142,9 +142,11 @@ dashy_services:
       - title: FreeIPA
         icon: favicon
         url: https://idm.kemo.labs/
+        statusCheckAllowInsecure: true
       - title: Keycloak SSO
         icon: favicon
         url: https://sso.kemo.labs/
+        statusCheckAllowInsecure: true
 
     - name: Media Services
       items:
@@ -184,22 +186,27 @@ dashy_services:
       - title: Kemo Labs Primer
         icon: favicon
         url: https://kemo.labs/
+        statusCheckAllowInsecure: true
 
       - title: Metrics Stack (Grafana)
         icon: favicon
         url: https://grafana.kemo.labs/
+        statusCheckAllowInsecure: true
 
       - title: Ansible Tower
         icon: favicon
         url: https://tower.kemo.labs/
+        statusCheckAllowInsecure: true
 
       - title: GitLab
         icon: favicon
         url: https://gitlab.kemo.labs/
+        statusCheckAllowInsecure: true
 
       - title: Core OpenShift Cluster
         icon: favicon
         url: https://console-openshift-console.apps.core-ocp.d70.lab.kemo.network/
+        statusCheckAllowInsecure: true
 
     - name: Network Services
       items:
