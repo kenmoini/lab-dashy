@@ -26,7 +26,7 @@ NETWORK="${NETWORK} --ip ${IP_ADDRESS}"
 
 CONFIG_VOLUME_MOUNT="{{ service_containers_dir }}/${CONTAINER_NAME}/volumes/config/config.yml:/app/public/conf.yml:z"
 
-HOST_CA_TRUST_MOUNT="{{ service_containers_dir }}/${CONTAINER_NAME}/certs/ca-bundle.pem:/etc/ssl/certs/extra-root-ca-certificates.crt:ro"
+HOST_CA_TRUST_MOUNT="{{ service_containers_dir }}/${CONTAINER_NAME}/certs/ca-bundle.crt:/etc/ssl/certs/extra-root-ca-certificates.crt:ro"
 
 ###################################################################################
 # EXECUTION PREFLIGHT
